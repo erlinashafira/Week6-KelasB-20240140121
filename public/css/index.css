@@ -1,0 +1,384 @@
+
+:root {
+    --primary: #4263eb;
+    --primary-dark: #304fc4;
+    --accent: #ffcc4d;
+    --background: #f5f7ff;
+    --surface: #ffffff;
+    --text: #252b42;
+    --muted: #737b91;
+    --border: #e5e9f5;
+    --success: #20a46b;
+    --danger: #e74c3c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+/* Navigasi */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px max(24px, calc((100% - 1120px) / 2));
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(37, 43, 66, 0.04);
+}
+
+nav a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    background: #edf0ff;
+    color: var(--primary-dark);
+}
+
+/* Header toko */
+header {
+    padding: 48px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #dfe7ff, #fff0c2);
+}
+
+header .eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 14px;
+    border-radius: 30px;
+    background: var(--surface);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.2;
+}
+
+header p {
+    max-width: 650px;
+    margin: 14px auto 0;
+    color: #555e78;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Pencarian dan kategori */
+.controls {
+    max-width: 1160px;
+    margin: 28px auto 0;
+    padding: 0 24px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+#searchInput,
+#categorySelect {
+    min-height: 46px;
+    padding: 12px 16px;
+    border: 1px solid #dce2f0;
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+#searchInput {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+}
+
+#categorySelect {
+    width: 240px;
+    max-width: 40%;
+    cursor: pointer;
+}
+
+#searchInput:focus,
+#categorySelect:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(66, 99, 235, 0.12);
+}
+
+#searchInput::placeholder {
+    color: #9aa1b3;
+}
+
+/* Konten utama */
+main {
+    width: 100%;
+    max-width: 1160px;
+    margin: 28px auto 60px;
+    padding: 0 24px;
+}
+
+#status {
+    padding: 32px 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+#status.error {
+    color: var(--danger);
+}
+
+/* Grid produk responsif */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Kartu produk */
+.card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(37, 43, 66, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(37, 43, 66, 0.1);
+}
+
+/* Area gambar */
+.card .thumb-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Informasi produk */
+.card .body {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.card .category {
+    margin-bottom: 9px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    overflow-wrap: anywhere;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+.card .meta {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Harga dan rating */
+.card .footer-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.price-tag {
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.price-tag .discount {
+    display: block;
+    margin-top: 4px;
+    color: var(--danger);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.rating {
+    color: #9a6b00;
+    background: #fff5d6;
+    border-radius: 6px;
+    padding: 5px 7px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* Label stok */
+.stock-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    max-width: calc(100% - 20px);
+    padding: 6px 9px;
+    border-radius: 7px;
+    background: var(--success);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.stock-badge.low {
+    background: var(--danger);
+}
+
+/* Footer */
+footer {
+    padding: 24px 16px;
+    background: #252b42;
+    color: #e4e8f5;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Laptop kecil */
+@media (max-width: 1000px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+/* Tablet dan HP */
+@media (max-width: 700px) {
+    nav {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    header {
+        padding: 36px 18px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 16px;
+        margin-top: 20px;
+    }
+
+    #searchInput,
+    #categorySelect {
+        width: 100%;
+        max-width: none;
+    }
+
+    main {
+        margin-top: 22px;
+        padding: 0 16px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card .body {
+        padding: 11px;
+    }
+
+    .card h3 {
+        font-size: 13px;
+    }
+
+    .price-tag {
+        font-size: 14px;
+    }
+
+    .card .footer-row {
+        gap: 7px;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 360px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
